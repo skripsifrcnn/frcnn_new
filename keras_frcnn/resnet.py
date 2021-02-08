@@ -18,7 +18,10 @@ from keras_frcnn.FixedBatchNormalization import FixedBatchNormalization
 
 
 def get_weight_path():
-    return os.path.join('keras_frcnn', 'weights','resnet50_weights_th_dim_ordering_th_kernels_notop.h5')
+    if K.image_dim_ordering() == 'th':
+        return 'resnet50_weights_th_dim_ordering_th_kernels_notop.h5'
+    else:
+        return 'resnet50_weights_tf_dim_ordering_tf_kernels.h5'
 
 
 def get_img_output_length(width, height):
